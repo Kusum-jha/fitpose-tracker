@@ -7,7 +7,9 @@ Track your exercise posture in real-time through your webcam — No hardware or 
 
 ## 📸 Live Demo
 
-[Click here to view the live demo)](https://kusum-jha.github.io/fitpose-tracker/)
+[Click here to view the live demo)]
+
+https://kusum-jha.github.io/fitpose-tracker/
 
 
 ---
