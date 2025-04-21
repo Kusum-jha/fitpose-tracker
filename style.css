@@ -25,10 +25,61 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 12px;
+    transition: all 0.3s ease;
   }
   
   .info-box {
     margin-top: 20px;
     font-size: 1.1rem;
+    background-color: rgba(0, 255, 200, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .controls {
+    margin-top: 20px;
+  }
+  
+  button {
+    background-color: #00ffc8;
+    color: #121212;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+  }
+  
+  button:hover {
+    background-color: #00b0a1;
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    background-color: #00a593;
+    transform: scale(0.98);
+  }
+  
+  #privacy-notice {
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .video-container {
+      width: 100%;
+      height: auto;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .info-box {
+      font-size: 1rem;
+    }
   }
   
