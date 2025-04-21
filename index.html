@@ -6,8 +6,7 @@
   <title>FitPose Tracker</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
 </head>
 <body>
   <h1>FitPose: AI-Based Posture Tracker</h1>
@@ -22,7 +21,13 @@
     <p id="feedback">Feedback: --</p>
   </div>
 
-  
+  <div class="controls">
+    <button id="start-camera">Start Camera</button>
+    <button id="stop-camera">Stop Camera</button>
+  </div>
+
+  <p id="privacy-notice"></p>
+
   <script src="script.js"></script>
 </body>
 </html>
