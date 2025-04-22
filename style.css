@@ -1,85 +1,106 @@
+:root {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --button-bg: #00ffc8;
+  --button-text: #121212;
+  --info-bg: rgba(0, 255, 200, 0.2);
+}
+
 body {
-    background-color: #121212;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  h1 {
-    color: #00ffc8;
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.light-mode {
+  --bg-color: #f2f2f2;
+  --text-color: #121212;
+  --button-bg: #121212;
+  --button-text: #ffffff;
+  --info-bg: rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #00ffc8;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.video-container {
+  position: relative;
+  max-width: 90vw;
+  margin: 20px auto;
+  aspect-ratio: 4/3;
+}
+
+video, canvas, #placeholder {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+#placeholder {
+  z-index: 1;
+}
+
+.info-box {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  background-color: var(--info-bg);
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #00b0a1;
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #00a593;
+  transform: scale(0.98);
+}
+
+#privacy-notice {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
   .video-container {
-    position: relative;
-    width: 640px;
-    height: 480px;
-    margin: 0 auto;
-  }
-  
-  video, canvas {
-    position: absolute;
     width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    height: auto;
   }
-  
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
   .info-box {
-    margin-top: 20px;
-    font-size: 1.1rem;
-    background-color: rgba(0, 255, 200, 0.2);
-    padding: 15px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-  }
-  
-  .controls {
-    margin-top: 20px;
-  }
-  
-  button {
-    background-color: #00ffc8;
-    color: #121212;
     font-size: 1rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 5px;
   }
-  
-  button:hover {
-    background-color: #00b0a1;
-    transform: scale(1.05);
-  }
-  
-  button:active {
-    background-color: #00a593;
-    transform: scale(0.98);
-  }
-  
-  #privacy-notice {
-    font-size: 0.9rem;
-    margin-top: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .video-container {
-      width: 100%;
-      height: auto;
-    }
-  
-    h1 {
-      font-size: 1.5rem;
-    }
-  
-    .info-box {
-      font-size: 1rem;
-    }
-  }
-  
+}

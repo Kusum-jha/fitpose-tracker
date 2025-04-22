@@ -8,26 +8,27 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
 </head>
-<body>
-  <h1>FitPose: AI-Based Posture Tracker</h1>
+  <body>
+    <h1>FitPose: AI-Based Posture Tracker</h1>
   
-  <div class="video-container">
-    <video id="webcam" autoplay playsinline></video>
-    <canvas id="output"></canvas>
-  </div>
-
-  <div class="info-box">
-    <p id="pose-status">Pose: Not Detected</p>
-    <p id="feedback">Feedback: --</p>
-  </div>
-
-  <div class="controls">
-    <button id="start-camera">Start Camera</button>
-    <button id="stop-camera">Stop Camera</button>
-  </div>
-
-  <p id="privacy-notice"></p>
-
-  <script src="script.js"></script>
-</body>
+    <div class="controls">
+      <button id="start-camera">Start Camera</button>
+      <button id="stop-camera">Stop Camera</button>
+      <button id="toggle-theme">Toggle Theme</button>
+    </div>
+  
+    <div class="video-container">
+      <img id="placeholder" src="placeholder.png" alt="Camera Placeholder" />
+      <video id="webcam" autoplay playsinline hidden></video>
+      <canvas id="output"></canvas>
+    </div>
+  
+    <div class="info-box">
+      <p id="pose-status">Pose: Not Detected</p>
+      <p id="feedback">Feedback: --</p>
+      <p id="privacy-notice"></p>
+    </div>
+  
+    <script src="script.js"></script>
+  </body>
 </html>
