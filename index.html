@@ -14,14 +14,19 @@
     <div class="controls">
       <button id="start-camera">Start Camera</button>
       <button id="stop-camera">Stop Camera</button>
-      <button id="toggle-theme">Toggle Theme</button>
+      
+      <label class="theme-switch">
+        <input type="checkbox" id="toggle-theme">
+        <span class="slider"></span>
+      </label>
     </div>
-  
+    
     <div class="video-container">
       <img id="placeholder" src="placeholder.png" alt="Camera Placeholder" />
       <video id="webcam" autoplay playsinline hidden></video>
       <canvas id="output"></canvas>
     </div>
+    
   
     <div class="info-box">
       <p id="pose-status">Pose: Not Detected</p>

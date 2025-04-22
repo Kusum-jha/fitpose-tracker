@@ -80,18 +80,19 @@ stopBtn.addEventListener('click', () => {
   }
 });
 const placeholderImg = document.getElementById('placeholder');
-const toggleThemeBtn = document.getElementById('toggle-theme');
+const toggleThemeCheckbox = document.getElementById('toggle-theme');
 
-// Theme Toggle
-toggleThemeBtn.addEventListener('click', () => {
+// Theme Toggle Switch
+toggleThemeCheckbox.addEventListener('change', () => {
   document.body.classList.toggle('light-mode');
 });
 
-// Show camera when started, hide placeholder
+// Show camera, hide placeholder
 startBtn.addEventListener('click', async () => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
     videoElement.srcObject = stream;
+
     placeholderImg.style.display = "none";
     videoElement.removeAttribute("hidden");
 
@@ -104,7 +105,7 @@ startBtn.addEventListener('click', async () => {
     });
 
     camera.start();
-    privacyNotice.textContent = "🔒 Your webcam feed is processed locally in your browser and never uploaded.";
+    privacyNotice.textContent = "🔒 Your webcam feed is processed locally in your browser.";
   } catch (err) {
     alert("Camera access denied. Please allow webcam permission.");
   }
@@ -121,6 +122,7 @@ stopBtn.addEventListener('click', () => {
     feedback.textContent = "Camera stopped.";
     poseStatus.textContent = "Pose: ❌ Not Available";
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
     placeholderImg.style.display = "block";
     videoElement.setAttribute("hidden", "true");
   }
