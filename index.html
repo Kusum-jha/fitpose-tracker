@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pose App</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Import Three.js via CDN as an ES Module -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.module.js';
+    window.THREE = THREE;  // Expose THREE globally to be used in other scripts
+  </script>
+
+  <!-- Import Mediapipe Pose Detection -->
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
 </head>
@@ -51,7 +59,10 @@
   <!-- Hidden canvas for internal use -->
   <canvas id="canvas" width="640" height="480" style="display:none"></canvas>
 
+  <!-- Three.js container for 3D objects -->
+  <div id="threejs-container" style="width: 640px; height: 480px;"></div>
+
   <!-- Pose logic -->
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
