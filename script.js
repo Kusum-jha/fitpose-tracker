@@ -6,15 +6,13 @@ const feedback = document.getElementById('feedback');
 const startBtn = document.getElementById('start-camera');
 const stopBtn = document.getElementById('stop-camera');
 const privacyNotice = document.getElementById('privacy-notice');
-const uploadInput = document.getElementById('upload');
 const placeholderImg = document.getElementById('placeholder');
-const toggleThemeCheckbox = document.getElementById('toggle-theme');
+const toggleThemeCheckbox = document.getElementById('themeToggle');
 const startSquatBtn = document.getElementById('start-squat');
 const startPushUpBtn = document.getElementById('start-push-up');
 
 let camera;
 let exerciseMode = '';  // Track the current exercise mode
-let uploadedImage = null;  // Store the uploaded image
 
 // Pose Detection setup
 const pose = new Pose({
@@ -31,13 +29,8 @@ pose.setOptions({
 pose.onResults((results) => {
   canvasCtx.save();
   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-  
-  // If there's an uploaded image, display it
-  if (uploadedImage) {
-    canvasCtx.drawImage(uploadedImage, 0, 0, canvasElement.width, canvasElement.height);
-  } else {
-    canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
-  }
+
+  canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
   if (results.poseLandmarks) {
     const poseLandmarks = results.poseLandmarks;
@@ -143,8 +136,16 @@ stopBtn.addEventListener('click', () => {
 });
 
 // Toggle Theme
-toggleThemeCheckbox.addEventListener('change', () => {
-  document.body.classList.toggle('light-mode');
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  document.body.classList.add("dark-theme");
+  toggleThemeCheckbox.checked = true;
+}
+
+toggleThemeCheckbox.addEventListener("change", () => {
+  const isDark = toggleThemeCheckbox.checked;
+  document.body.classList.toggle("dark-theme", isDark);
+  localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
 // Set exercise mode to Squat
@@ -159,45 +160,4 @@ startPushUpBtn.addEventListener('click', () => {
   exerciseMode = 'push-up';
   feedback.textContent = "🎯 Focus on your push-up form.";
   poseStatus.textContent = "Pose: 💪 Push-Up Mode";
-});
-
-// Upload Image
-uploadInput.addEventListener("change", async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const img = new Image();
-  img.src = URL.createObjectURL(file);
-
-  img.onload = async () => {
-    uploadedImage = img;
-    const uploadCanvas = document.getElementById('canvas');
-    const ctx = uploadCanvas.getContext('2d');
-    const placeholderWrapper = document.querySelector('.canvas-wrapper'); // Get the wrapper for proper positioning
-
-    // Set canvas dimensions to match placeholder size (ensure scaling)
-    uploadCanvas.width = placeholderWrapper.offsetWidth;
-    uploadCanvas.height = placeholderWrapper.offsetHeight;
-
-    // Clear the previous drawing (if any)
-    ctx.clearRect(0, 0, uploadCanvas.width, uploadCanvas.height);
-
-    // Calculate the scaling factors to maintain aspect ratio
-    const scaleX = uploadCanvas.width / img.width;
-    const scaleY = uploadCanvas.height / img.height;
-    const scale = Math.min(scaleX, scaleY);
-
-    // Calculate the position to center the image in the placeholder
-    const x = (uploadCanvas.width - img.width * scale) / 2;
-    const y = (uploadCanvas.height - img.height * scale) / 2;
-
-    // Draw the image on the canvas
-    ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-
-    // Now the uploaded image will be shown in the placeholder area
-    placeholderImg.classList.remove('show');
-    videoElement.classList.remove('show');
-    canvasElement.classList.remove('show');
-    uploadCanvas.classList.add('show');
-  };
 });

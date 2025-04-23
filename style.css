@@ -202,11 +202,6 @@ body.dark-theme .info {
   background: #2b0036;
 }
 
-/* File Upload */
-#upload {
-  background-color: transparent;
-  margin-top: 1rem;
-}
 
 /* Utility */
 .show {
